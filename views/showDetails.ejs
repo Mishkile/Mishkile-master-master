@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= show.name %>
+    </title>
+    <link rel="stylesheet" href="https://bootswatch.com/5/cyborg/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/detailed.css">
+</head>
+
+<body>
+    <nav width="100%" class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Portfolio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+            </li>
+        </ul>
+    </div>
+    </div>
+    </nav>
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+
+
+
+
+                <!--- ignore the code below-->
+
+
+
+                <div id="main-div" class="row">
+                    <div class="col-md-4">
+                        <% if (show.image==null) { %>
+                            <p>No Image Found</p>
+                            <% } else { %>
+                                <img src="<%= show.image.medium %> " class="thumbnail">
+
+                                <% } %>
+                    </div>
+                    <div class="col-md-8">
+                        <h2>
+                            <%= show.name %>
+                        </h2>
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong>Genre:</strong>
+                                <%= show.genres %>
+                            </li>
+                            <li class="list-group-item"><strong>Language:</strong>
+                                <%= show.language %>
+                            </li>
+                            <li class="list-group-item"><strong>Released:</strong>
+                                <%= show.premiered %>
+                            </li>
+                            <li class="list-group-item"><strong>Type:</strong>
+                                <%= show.type %>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="well">
+                        <h3>Plot</h3>
+
+                        <%- plot %>
+
+                    </div>
+
+                </div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+#movies img, #movie img{
+    width:100%;
+  }
+  
+  @media(min-width:960px){
+    #movies .col-md-3 .well{
+      height: 390px;
+    }
+  
+    #movies .col-md-3 img{
+      height:240px;
+    }
+  }
+
+#movies {
+  display: inline;
+}
+
+#showLink {
+  color: white;
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: ease-in 250ms;
+}
+
+#showLink:hover {
+  color: black;
+  background-color: white;
+  padding: 5px;
+  border: 1px solid white;
+  text-decoration: none;
+  padding: 8px;
+}
+td {
+  vertical-align: middle;
+  text-align: center;
+   font-weight: bold;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.genres {
+  text-align: left;
+}
+
+table {
+  margin-left: 10px;
+}
+
+.showDetails {
+  padding: 10px;
+  text-decoration: none;
+  font-weight: bolder
+}

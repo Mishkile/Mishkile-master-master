@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://bootswatch.com/5/cyborg/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/searchApp.css">
+
+</head>
+
+<body>
+    <nav width="100%" class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="jumbotron">
+            <h3 class="text-center">Search For Any TVShow</h3>
+            <form action="/searchShow/results" id="searchForm" method="POST">
+                <input type="text" name="query" class="form-control" id="searchText" placeholder="Search Movies...">
+            </form>
+        </div>
+    </div>
+    <hr>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th width="5%" scope="col">Poster</th>
+                <th width="15%" scope="col">Show Name</th>
+                <th width="15%" scope="col">Genres</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% searchedShows.forEach(tvShow=> { %>
+                <tr>
+                    <th scope="row">
+                        <% if(tvShow.show.image==null) { %>
+
+                            <%= tvShow.show.name %> (No Image)
+
+                                <% } else { %>
+                                    <a href="results/<%= tvShow.show.id %>">
+                                        <img src="<%= tvShow.show.image.medium %>" alt="">
+                                        <% } %>
+                    </th>
+                    <td width="15%">
+                        <a class="showDetails" href="results/<%= tvShow.show.id %>">
+                            <%= tvShow.show.name %>
+                        </a>
+
+
+
+                    </td>
+                    <td class="genres">
+                        <% tvShow.show.genres.forEach(genre=>{ %>
+                            <ul>
+                                <li>
+                                    <%= genre %>
+                                </li>
+                            </ul>
+                            <% }) %>
+
+                    </td>
+                </tr>
+                <% }) %>
+
+                    <% localShows.forEach(tvShow=> { %>
+                        <tr>
+                            <th scope="row">
+                                <% if(tvShow.Image) { %>
+
+                                    <%= tvShow.Name %> (No Image)
+
+                                        <% } else { %>
+                                            No Image
+                                            <% } %>
+                            </th>
+                            <td width="15%">
+
+                                <%= tvShow.Name %>
+                            </td>
+                            <td class="genres">
+                                <% tvShow.Genres.forEach(genre=>{ %>
+                                    <ul>
+                                        <li>
+                                            <%= genre %>
+                                        </li>
+                                    </ul>
+                                    <% }) %>
+
+                            </td>
+                        </tr>
+                        <% }) %>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
+
+
+<!-- <div class="container">
+        <div id="movies" class="row">
+            <div class="col-md-3">
+                <div class="well text-center">
+                    <% searchedShows.forEach(tvShow=> { %>
+                        <% if(tvShow.show.image==null) { %>
+                            <p>
+                            <h2>
+                                <%= tvShow.show.name %>
+                            </h2>
+                            No Image
+                            </p>
+                            <hr>
+                            <% } else { %>
+                                <img src="<%= tvShow.show.image.medium %>">
+                                <h2>
+                                    <%= tvShow.show.name %>
+                                </h2>
+                                <a id="showLink" href="results/<%= tvShow.show.id %>">Show Details</a>
+
+                                <hr>
+                                <% } %>
+
+                                    <% }) %>
+
+
+                </div>
+            </div>
+        </div>
+    </div>

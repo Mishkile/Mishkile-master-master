@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://bootswatch.com/5/cyborg/bootstrap.min.css">
+
+    <link rel='stylesheet' href='/stylesheets/addUser.css' />
+    <style>
+        section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/searchShow">Search Shows</a>
+                </li>
+            </ul>
+        </div>
+        <div id="logOut-div">
+            <a id="logOut" href="/logout">Log Out</a>
+
+        </div>
+    </nav>
+    <section>
+        <h1>Edit/Add User</h1>
+        <div id="form-div">
+            <form action="/newUser/edit/<%= userNamePatch %>" method="POST">
+                <div class="form">
+                    <div class="title">Welcome</div>
+                    <div class="subtitle">Edit account</div>
+                    <div class="input-container ic1">
+                        <input name="userName" id="firstname" class="input" type="text" value="<%= userNamePatch %>"
+                            required />
+                        <div class="cut"></div>
+                        <label for="userName" class="placeholder">username</label>
+                    </div>
+                    <div class="input-container ic2">
+                        <input name="userPass" id="lastname" class="input" type="password" placeholder="" required />
+                        <div class="cut"></div>
+                        <label for="userPass" class="placeholder">password</label>
+                    </div>
+                    <label for="isAdmin">Admin</label><br>
+                    <input type="checkbox" id="" name="isAdmin" id="" value="true">
+                    <button type="text" class="submit">submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+</body>
+
+</html>

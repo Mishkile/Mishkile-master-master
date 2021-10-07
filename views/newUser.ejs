@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://bootswatch.com/5/cyborg/bootstrap.min.css">
+
+    <!-- <link rel='stylesheet' href='/stylesheets/newUser.css' /> -->
+    <link rel='stylesheet' href='/stylesheets/tabs.css' />
+    <link rel='stylesheet' href='/stylesheets/addUser.css' />
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/searchShow">Search Shows</a>
+                </li>
+
+                <li class="nav-item">
+                <li id="menuDiv">
+                    <a href="/menu" class="nav-link">Menu</a>
+                </li>
+                <li class="nav-item">
+                <li id="menuDiv">
+                    <a href="/logout" class="nav-link">Log Out</a>
+                </li>
+        </div>
+
+        </li>
+
+
+
+
+        </ul>
+        </div>
+
+    </nav>
+
+
+    <ul class="tabs">
+        <li data-tab-target="#home" class="active tab">Add User</li>
+        <li data-tab-target="#pricing" class="tab">Users</li>
+        <li data-tab-target="#about" class="tab">About</li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="home" data-tab-content class="active">
+            <h1>Add User</h1>
+            <div id="form-div">
+                <form action="/newUser" method="POST">
+                    <div class="form">
+                        <% if (msg !=null) { %>
+
+                            <p>
+                                <%= msg %>
+                            </p>
+                            <% } %>
+                                <div class="title">Welcome</div>
+                                <div class="subtitle">create account</div>
+                                <div class="input-container ic1">
+                                    <input name="userName" id="firstname" class="input" type="text" placeholder=""
+                                        required />
+                                    <div class="cut"></div>
+                                    <label for="userName" class="placeholder">username</label>
+                                </div>
+                                <div class="input-container ic2">
+                                    <input name="userPass" id="lastname" class="input" type="password" placeholder=""
+                                        required />
+                                    <div class="cut"></div>
+                                    <label for="userPass" class="placeholder">password</label>
+                                </div>
+                                <label for="isAdmin">Admin</label><br>
+                                <input type="checkbox" name="isAdmin" value="true">
+                                <button type=" text" class="submit">submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="pricing" data-tab-content>
+
+            <section>
+                <table style="border: 1px solid red;">
+                    <tr>
+                        <th>username</th>
+                        <th>password</th>
+                        <th>Is Admin</th>
+                        <th>Delete</th>
+                        <th>Edit</th>
+
+                    </tr>
+                    <!-- DATABASE FROM MONGODB -->
+                    <% data2.forEach(user=> { %>
+                        <tr>
+
+
+                            <td>
+                                <%= user.username %>
+                            </td>
+                            <td>
+                                <%= user.password %>
+                            </td>
+                            <td>
+                                <% if(user.role=='Admin' ) { %>
+                                    True
+                                    <% } else { %>
+                                        False
+                                        <% } %>
+                            </td>
+                            <td>
+                                <form method="POST" action="/newUser/delete">
+                                    <button name="userNameDel" value="<%= user.username %>" type="submit"
+                                        id="deleteUser">Delete
+                                        User</button>
+                                </form>
+
+
+                            </td>
+                            <td>
+                                <form action="/newUser/edit" method="POST">
+                                    <button name="userNamePatch" value="<%= user.username %>" type="submit"
+                                        id="deleteUser">Edit User</button>
+                                </form>
+
+                            </td>
+                        </tr>
+
+                        </tr>
+
+                        <% }) %>
+
+                </table>
+            </section>
+
+
+        </div>
+
+    </div>
+    <div id="about" data-tab-content>
+        <h1>About</h1>
+        <p>Let me tell you about me</p>
+    </div>
+    </div>
+
+
+    <hr style="color: white" width="100%">
+
+    <script>
+        const tabs = document.querySelectorAll('[data-tab-target]')
+        const tabContents = document.querySelectorAll('[data-tab-content]')
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = document.querySelector(tab.dataset.tabTarget)
+                tabContents.forEach(tabContent => {
+                    tabContent.classList.remove('active')
+                })
+                tabs.forEach(tab => {
+                    tab.classList.remove('active')
+                })
+                tab.classList.add('active')
+                target.classList.add('active')
+            })
+        })
+    </script>
+</body>
+
+</html>
