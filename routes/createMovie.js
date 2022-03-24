@@ -12,6 +12,7 @@ router.get('/', function (req, res, next) {
         res.render('createMovie', { msg: null });
     } else {
         res.redirect('/login')
+        console.log("hi");
     }
 });
 
